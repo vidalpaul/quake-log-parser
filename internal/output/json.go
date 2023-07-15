@@ -1,4 +1,4 @@
-package io
+package output
 
 import (
 	"encoding/json"
@@ -12,6 +12,11 @@ func WriteJsonToFile(data interface{}, fileName string) error {
 	if err != nil {
 		println("Error marshalling to JSON:", err)
 		return err
+	}
+
+	err = os.MkdirAll("./reports", os.ModePerm)
+	if err != nil {
+		return fmt.Errorf("Error creating directory: %v", err)
 	}
 
 	filePath := filepath.Join("./reports", fileName+".json")
