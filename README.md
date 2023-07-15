@@ -36,3 +36,11 @@ Follow these steps to get started with the Quake log parser:
    ```bash
    go test ./...
    ```
+
+Alternatively, you can run the project using Docker:
+
+```bash
+docker build -t quake-log-parser -f build/Dockerfile .
+
+docker run --rm quake-log-parser
+```
