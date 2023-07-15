@@ -1,6 +1,6 @@
 # Quake Log Parser
 
-This project is a Quake log parser implemented in Go, developed specifically for solving this https://gist.github.com/cloudwalk-tests/704a555a0fe475ae0284ad9088e203f1 assignment. It allows you to read a Quake log file, extract game data for each match, collect kill data, and generate reports based on the parsed information.
+This project is a Quake log parser implemented in Go, developed specifically for solving [this assignment](https://gist.github.com/cloudwalk-tests/704a555a0fe475ae0284ad9088e203f1). It allows you to read a Quake log file, extract game data for each match, collect kill data, and generate reports based on the parsed information.
 
 ## Requirements
 
