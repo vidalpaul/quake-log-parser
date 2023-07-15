@@ -7,6 +7,7 @@ This project is a Quake log parser implemented in Go, developed specifically for
 To use this project, you need the following:
 
 - Go programming language
+- Git
 
 ## Getting Started
 
@@ -16,10 +17,6 @@ Follow these steps to get started with the Quake log parser:
 
    ```bash
    git clone github.com/vidalpaul/cloudwalk-quake-test.git
-   ```
-
-   ```
-
    ```
 
 2. Build the project:
