@@ -1,3 +1,7 @@
+// File: register.go
+// Package: parser
+// This contains functions pertaining to registering kills and players.
+
 package parser
 
 import (
@@ -5,10 +9,10 @@ import (
 	"regexp"
 	"strings"
 
-	. "github.com/vidalpaul/quake-log-parser/internal/pkg/data"
+	"github.com/vidalpaul/quake-log-parser/internal/pkg/data"
 )
 
-func RegisterKill(match *MatchData, tokens []string) {
+func RegisterKill(match *data.MatchData, tokens []string) {
 	// Adds total kills
 	match.TotalKills++
 
@@ -56,7 +60,7 @@ func RegisterKill(match *MatchData, tokens []string) {
 	}
 }
 
-func RegisterPlayer(match *MatchData, tokens []string) {
+func RegisterPlayer(match *data.MatchData, tokens []string) {
 	// Parse player name
 	regex := regexp.MustCompile(`[^\\n](\w*|\w* )*`)
 	player := regex.FindString(strings.Join(tokens[3:], " "))

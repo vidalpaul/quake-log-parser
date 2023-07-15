@@ -1,3 +1,5 @@
+// Package parser provides functions to parse the Quake log file.
+
 package parser
 
 import (
@@ -5,11 +7,12 @@ import (
 	"strings"
 	"sync"
 
-	. "github.com/vidalpaul/quake-log-parser/internal/pkg/data"
+	"github.com/vidalpaul/quake-log-parser/internal/pkg/data"
 )
 
-func NewMatch(matchs map[string]*MatchData, matchNumber int) *MatchData {
-	var newMatch MatchData = MatchData{
+// NewMatch creates a new match and adds it to the matchs map.
+func NewMatch(matchs map[string]*data.MatchData, matchNumber int) *data.MatchData {
+	newMatch := data.MatchData{
 		TotalKills:  0,
 		Players:     make([]string, 0),
 		KillCount:   make(map[string]int),
@@ -57,7 +60,7 @@ func fillKillMeans(means *map[string]int) {
 	(*means)["MOD_GRAPPL"] = 0
 }
 
-func NewLeaderboard(match *MatchData) {
+func NewLeaderboard(match *data.MatchData) {
 	leaderboard := make([]int, len(match.Players))
 	for i := range match.Players {
 		leaderboard[i] = i + 1
@@ -72,9 +75,9 @@ func NewLeaderboard(match *MatchData) {
 	}
 }
 
-func Parse(log string) map[string]*MatchData {
+func Parse(log string) map[string]*data.MatchData {
 	var waitgroup sync.WaitGroup
-	var matchs map[string]*MatchData = make(map[string]*MatchData, 0)
+	var matchs map[string]*data.MatchData = make(map[string]*data.MatchData, 0)
 	matchNumber := 0
 
 	// Log lines as array
@@ -103,7 +106,7 @@ func Parse(log string) map[string]*MatchData {
 	return matchs
 }
 
-func ExtractMatchData(match *MatchData, lines []string, lineNumber int, waitgroup *sync.WaitGroup) {
+func ExtractMatchData(match *data.MatchData, lines []string, lineNumber int, waitgroup *sync.WaitGroup) {
 	defer waitgroup.Done()
 
 	// Iterate log lines of specific match
