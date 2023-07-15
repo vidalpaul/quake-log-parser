@@ -46,6 +46,14 @@ func RegisterKill(match *MatchData, tokens []string) {
 		match.KillCount[victim]--
 	}
 
+	// Check if kill was by suicide or unknown mean
+	if killer == victim {
+		match.KillMeans["MOD_SUICIDE"]++
+	} else if _, ok := match.KillMeans[killMean]; !ok {
+		match.KillMeans["MOD_UNKNOWN"]++
+	} else {
+		match.KillMeans[killMean]++
+	}
 }
 
 func RegisterPlayer(match *MatchData, tokens []string) {
