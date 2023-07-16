@@ -1,3 +1,5 @@
+// Package input provides functions to get the log file path and its content.
+
 package input
 
 import (
@@ -7,6 +9,7 @@ import (
 	"strings"
 )
 
+// GetAbsFilePath returns the absolute path of the log file, or an error if it fails.
 func GetAbsFilePath() (string, error) {
 	var path string
 
@@ -25,6 +28,7 @@ func GetAbsFilePath() (string, error) {
 	return absPath, nil
 }
 
+// GetLogFileContent returns the content of the log file, or an error if it fails.
 func GetLogFileContent(path string) (string, error) {
 	content, err := ioutil.ReadFile(path)
 	if err != nil {

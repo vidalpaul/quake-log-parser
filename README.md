@@ -8,6 +8,7 @@ To use this project, you need the following:
 
 - Go programming language
 - Git
+- Docker (optional)
 
 ## Getting Started
 
