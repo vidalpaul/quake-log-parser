@@ -61,17 +61,23 @@ func fillKillMeans(means *map[string]int) {
 }
 
 func NewLeaderboard(match *data.MatchData) {
-	leaderboard := make([]int, len(match.Players))
-	for i := range match.Players {
-		leaderboard[i] = i + 1
+	leaderboard := make([]string, len(match.Players))
+	copy(leaderboard, match.Players)
+
+	// Order by kills using insertion sort
+	for i := 1; i < len(leaderboard); i++ {
+		key := leaderboard[i]
+		j := i - 1
+		for j >= 0 && match.KillCount[leaderboard[j]] < match.KillCount[key] {
+			leaderboard[j+1] = leaderboard[j]
+			j--
+		}
+		leaderboard[j+1] = key
 	}
 
-	// Sort leaderboard by kills using Quicksort
-	quicksortLeaderboard(leaderboard, match.Players, match.KillCount, 0, len(leaderboard)-1)
-
-	// Update the leaderboard map with sorted player names
-	for i, position := range leaderboard {
-		match.Leaderboard[position] = match.Players[i]
+	// Assign sorted leaderboard back to match.Leaderboard
+	for i, player := range leaderboard {
+		match.Leaderboard[i+1] = player
 	}
 }
 
